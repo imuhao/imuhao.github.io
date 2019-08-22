@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/22/TEUwqiasDI3nxJe.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/08/22/ZIeaLy8qDSrYHb1.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/08/22/dPqeLJNIjBaZET5.jpg">
-<meta property="og:updated_time" content="2019-08-22T10:05:20.402Z">
+<meta property="og:updated_time" content="2019-08-22T10:36:31.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android AOP 切面编程">
 <meta name="twitter:description" content="AOP是Aspect Oriented Programming的缩写，即『面向切面编程』。它和我们平时接触到的OOP都是编程的不同思想，OOP，即『面向对象编程』，它提倡的是将功能模块化，对象化，而AOP的思想，则不太一样，它提倡的是针对同一类问题的统一处理，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重">
@@ -135,7 +135,7 @@
       
            
             <div id="toc" class="toc">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#APT"><span class="toc-text">APT</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#APT"><span class="toc-text">APT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AspectJ"><span class="toc-text">AspectJ</span></a></li></ol>
 </div>
 
          
@@ -156,7 +156,7 @@
 </ul>
 </li>
 </ul>
-<p>###AspectJ<br>支持编译期和加载时代码注入</p>
+<h3 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h3><p>支持编译期和加载时代码注入</p>
 <p><strong>Advice（通知）</strong>: 典型的 Advice 类型有 before、after 和 around，分别表示在目标方法执行之前、执行后和完全替代目标方法执行的代码。<br><strong>Joint point（连接点）</strong>: 程序中可能作为代码注入目标的特定的点和入口。<br><strong>Pointcut（切入点）</strong>: 告诉代码注入工具，在何处注入一段特定代码的表达式。<br><strong>Aspect（切面）</strong>: Pointcut 和 Advice 的组合看做切面。例如，在本例中通过定义一个 pointcut 和给定恰当的advice，添加一个了内存缓存的切面。<br><strong>Weaving（织入）</strong>: 注入代码（advices）到目标位置（joint points）的过程。<br><img src="https://i.loli.net/2019/08/22/ZIeaLy8qDSrYHb1.jpg" alt=""></p>
 <p>常用框架:Hugo(Jake Wharton)<br>使用场景:</p>
 <ul>
