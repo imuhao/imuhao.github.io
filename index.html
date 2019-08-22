@@ -118,7 +118,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/Android-Interview-Question/">Android 知识点(持续更新)</a>
+      <a class="article-title" href="/2019/08/22/Android-Interview-Question/">Android 知识点</a>
     </h1>
   
 
@@ -126,39 +126,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-           
-            <div id="toc" class="toc">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通讯"><span class="toc-text">进程间通讯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC、MVP、MVVM"><span class="toc-text">MVC、MVP、MVVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计模式"><span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发编程"><span class="toc-text">并发编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码原理"><span class="toc-text">源码原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注解处理器"><span class="toc-text">注解处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap原理"><span class="toc-text">HashMap原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-Studio-编译过程"><span class="toc-text">Android Studio 编译过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RecycleView-优化"><span class="toc-text">RecycleView 优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-各版本区别"><span class="toc-text">Android 各版本区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dalvik-ART"><span class="toc-text">Dalvik,ART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-优化"><span class="toc-text">Android 优化</span></a></li></ol>
-</div>
+        <p>持续更新…</p>
 
-         
-        <h3 id="进程间通讯"><a href="#进程间通讯" class="headerlink" title="进程间通讯"></a>进程间通讯</h3><details><br><summary>  </summary><br>- 文件<br>- AIDL(基于 Binder)<br>    - Android 接口定义语言,官方提供的进程间通信机制<br>    - 只有允许不同应用的客户端用 IPC 方式调用远程方法，并且想要在服务中处理多线程时，才有必要使用 AIDL<br>- Binder<br>    - 有四个角色 Server,Client,ServerManager,Binder 驱动,前三个在用户空间,最后一个在内核空间<br>    - <img src="https://i.loli.net/2019/08/22/mAQKvWgcuC9qDYr.jpg" alt="-w340"><br>    - 如果需要调用远程方法，但不需要处理并发 IPC，就应该通过实现一个 Binder 创建接口<br><br>- Messenger(基于 Binder)<br>    -  对 AIDL 进行封装,和使用 Handler 一样简单的来完成基于消息的跨进程通信<br>    -  如果您想执行 IPC，但只是传递数据，不涉及方法调用，也不需要高并发，就使用 Messenger 来实现接口<br>- ContentProvider(基于 Binder)<br>    - 如果需要处理一对多的进程间数据共享（主要是数据的 CRUD），就使用 ContentProvider<br>- Socket<br>    - 如果要实现一对多的并发实时通信，就使用 Socket<br><br><img src="https://i.loli.net/2019/08/22/OE4HbiFhJnwZrMC.jpg" alt="-w709"><br></details>
-
-
-<h3 id="MVC、MVP、MVVM"><a href="#MVC、MVP、MVVM" class="headerlink" title="MVC、MVP、MVVM"></a>MVC、MVP、MVVM</h3><details><br><summary>  </summary><br><strong>MVC</strong><br>Activity 一方面需要控制布局,另一方面还要写业务逻辑,逻辑比较混乱<br><br><strong>MVP</strong><br>Model 和 View 通过 Presenter 来进行交互<br>降低了耦合,职责划分清晰<br><br><strong>MVVM</strong><br>- 模型层 (Model)：负责从各种数据源中获取数据；<br>- 视图层 (View)：在 Android 中对应于 Activity 和 Fragment，用于展示给用户和处理用户交互，会驱动 ViewModel 从 Model 中获取数据；<br>- ViewModel 层：用于将 Model 和 View 进行关联，我们可以在 View 中通过 ViewModel 从 Model 中获取数据；当获取到了数据之后，会通过自动绑定，比如 DataBinding，来将结果自动刷新到界面上。<br>MVVM模式和MVC模式一样，主要目的是分离视图（View）和模型（Model），有几大优点：<br>- 低耦合：视图（View）可以独立于Model变化和修改，一个 ViewModel 可以绑定到不同的 View 上，当 View 变化的时候 Model 可以不变，当 Model 变化的时候 View 也可以不变。<br>- 可重用性：你可以把一些视图逻辑放在一个 ViewModel 里面，让很多 view 重用这段视图逻辑。<br></details>
-
-<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><details><br><summary>  </summary><br>#### 单例模式<br>懒汉式-双重检验锁<br>静态内部类(加载一个类时,内部类不会被加载,仅当其某个静态成员（静态域、构造器、静态方法等）被调用时类才会被加载)<br>饿汉式<br>枚举<br><br>#### 工厂模式<br><br><strong>简单工厂模式(不属于23种模式之间)</strong><br>定义一个工厂类，根据传入的参数不同返回不同的实例，被创建的实例具有共同的父类或接口。<br><br><strong>工厂方法模式</strong><br>定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到其子类。<br><br><br>简单工厂只有一个统一的工厂类，而工厂方法是针对每个要创建的对象都会提供一个工厂类，这些工厂类都实现了一个工厂基类<br><br><strong>抽象工厂模式</strong><br>工厂方法模式的一个工厂只能创建一个具体产品。而抽象工厂模式的一个工厂可以创建属于一类类型的多种具体产品。<br><br>&gt; AbstractFactory(抽象工厂)：用于声明生成抽象产品的方法<br><br>&gt; ConcreteFactory(具体工厂)：实现了抽象工厂声明的生成抽象产品的方法，生成一组具体产品，这些产品构成了一个产品族，每一个产品都位于某个产品等级结构中；<br><br>&gt; AbstractProduct(抽象产品)：为每种产品声明接口，在抽象产品中定义了产品的抽象业务方法；<br><br>&gt; Product(具体产品)：定义具体工厂生产的具体产品对象，实现抽象产品接口中定义的业务方法。<br><br>抽象工厂模式与工厂方法模式最大的区别在于，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式则需要面对多个产品等级结构。<br><br><br>#### 观察者模式<br>当一个对象被多个观察者所订阅,当这个对象发生变化时,发出通知,所有订阅的观察者就会收到通知.<br>- 控件中Listener监听方式<br>- Adapter的notifyDataSetChanged()方法<br>- BroadcastReceiver<br><br><br>#### 代理模式<br>通过一个代理类来访问一个真实类的功能<br><br>#### 责任连模式<br><br>- 事件分发<br>- OkHttp 请求<br><br>#### 模板模式<br>基于继承的代码复用,相同的代码放到父类中,不同的方法进行抽象让不同的子类实现.<br><br>- View 中 draw 方法<br></details>
-
-<h3 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h3><details><br><summary>  </summary><br>#### volatile<br>- 可见性:当一个变量被volatile修饰之后，其就具备可见性,线程修改了变量的值时， 变量的新值对其他线程是立即可见的。 换句话说， 就是不同线程对这个变量进行操作时具有可见性。<br>- 禁止指令重排序:一个是当程序执行到volatile变量的操作时， 在其前面的操作已经全部执行完毕， 并且结果会对后面的<br>操作可见， 在其后面的操作还没有进行； 在进行指令优化时， 在volatile变量之前的语句不能在volatile变量后面执行； 同样， 在volatile变量之后的语句也不能在volatile变量前面执行。<br><br>####synchronized<br>Synchronized的作用主要有三个：<br>（1）确保线程互斥的访问同步代码<br><br>（2）保证共享变量的修改能够及时可见(这个可能会被许多人忽略了)<br><br>（3）有效解决重排序问题。<br><br>同步方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private synchronized void test() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>同步代码块:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">synchronized(obj)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>静态方法加锁:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static synchronized void test();</span><br></pre></td></tr></table></figure><br><br></details>
-
-<h3 id="源码原理"><a href="#源码原理" class="headerlink" title="源码原理"></a>源码原理</h3><details><br><summary>  </summary><br>#### Retrofit 原理<br>Retrofit主要是在create方法中采用动态代理模式实现接口方法，这个过程构建了一个ServiceMethod对象，根据方法注解获取请求方式，参数类型和参数注解拼接请求的链接，当一切都准备好之后会把数据添加到Retrofit的RequestBuilder中。然后当我们主动发起网络请求的时候会调用okhttp发起网络请求，okhttp的配置包括请求方式，URL等在Retrofit的RequestBuilder的build()方法中实现，并发起真正的网络请求。<br><br>#### EventBus 原理<br>EventBus 采用事件驱动,一个事件是由于另一个事件的出发而被调用.<br>EventBus 中最重要的变量为 <code>Map&lt;Class&lt;?&gt;, CopyOnWriteArrayList&lt;Subscription&gt;&gt; subscriptionsByEventTy</code>,key 为事件类型,value 为对该事件类型的所有订阅方法.<br><img src="https://i.loli.net/2019/08/22/b4KQw9RlmFyg6Ze.jpg" alt=""><br><br>#### OkHttp 原理<br>#### ARouter 原理<br><br><br></details>
-
-<h3 id="注解处理器"><a href="#注解处理器" class="headerlink" title="注解处理器"></a>注解处理器</h3><details><br><summary>  </summary><br>在程序编译期间,根据注解生成 Java 代码.<br></details>
-
-<h3 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h3><details><br><summary>  </summary><br>aaaa<br></details>
-
-<h3 id="Android-Studio-编译过程"><a href="#Android-Studio-编译过程" class="headerlink" title="Android Studio 编译过程"></a>Android Studio 编译过程</h3><details><br><summary>  </summary><br><img src="https://i.loli.net/2019/08/22/NIOs43FXC8ETKYi.jpg" alt=""><br></details>
-
-
-
-<h3 id="RecycleView-优化"><a href="#RecycleView-优化" class="headerlink" title="RecycleView 优化"></a>RecycleView 优化</h3><details><br><summary>  </summary><br>- 使用<code>DiffUtil</code>局部刷新<br>- <code>recyclerView.setHasFixedSize(true)</code> 当 <code>item</code> 高度固定,设置这个选项可以提高性能.<br>- 复用 <code>RecycledViewPool</code>,为多个 <code>RecyclerView</code> 间公用一个 对象池<br>- <code>getExtraLayoutSpace</code>,改变滑动时预判的范围,达到预加载数据<br>- 不要将 <code>RecyclerView</code> 添加到<code>ScrollView</code>中,尽量给 RecyclerView 不同 <code>ItemType</code> 实现<br>- <code>addOnScrollListener</code>滑动时停止加载<br><br></details>
-
-<h3 id="Android-各版本区别"><a href="#Android-各版本区别" class="headerlink" title="Android 各版本区别"></a>Android 各版本区别</h3><details><br><summary>  </summary><br>#### Android 5.0<br>- Material design<br>- 系统由以往的Dalvik模式改为采用ART<br><br>#### Android 6.0<br>- 运行时权限<br>- 移出对<code>HTTP client</code>支持<br><br>#### Android 7.0<br>- 通知栏快捷回复<br>- 加入原生分屏多任务功能<br>- 引入全新的JIT编译器，使得App安装速度快了75%，编译代码的规模减少了50%<br><br>#### Android 8.0<br>- 画中画<br>- Notification Dots :程序图片小红点,长按查看预览<br>- 后台进程限制<br>- 运行时权限策略变化:API 24之前申请一个权限,会将权限组的权限同时授予.24之后只会授予申请的权限,之后申请权限组时,会自动授予不会提示.<br><br>#### Android 9.0<br>- 全面屏支持<br>- 前台服务需要添加权限<br></details>
-
-<h3 id="Dalvik-ART"><a href="#Dalvik-ART" class="headerlink" title="Dalvik,ART"></a>Dalvik,ART</h3><details><br><summary>  </summary><br>Dalvik每次运行要通过即时编译器(JIT)将字节码转变为机器码,安装快,运行慢.<br>ART 在第一次安装时将字节码预编译(AOT)成机器码,安装慢,以后启动直接执行,运行效率高.占用空间比 Dalvik 大,以空间换时间<br>预编译可以解决运行时不用重复编译,减少 CPU 使用频率,改善电池续航<br>Android 7.0混编模式(JIT+AOT),App 安装时不编译,运行时先走解析器,将热点函数识别用 JIT 进行编译并缓存,当手机充电 or 待机时对代码进行 AOT编译,运行几次之后速度会变好.<br></details>
-
-
-<h3 id="Android-优化"><a href="#Android-优化" class="headerlink" title="Android 优化"></a>Android 优化</h3><details><br><summary></summary><br>#### 启动优化<br>分为 冷启动和 热启动<br><br>不可控阶段:点击 <code>app</code> 到初始化 <code>Application</code> 之间,系统托管,从 <code>Zygote</code> <code>fork</code> 创建新进程,<code>GC</code> 回收等都不可控<br><br>- 样式改为图片,避免白屏<br>-  Application 的 onCreate 中避免做过多处理,如果有必要用IntentService处理(推送)<br>-  首页对 Back键做处理 返回首页而不是退出 App<br><br><br>#### 内存优化<br>减少内存溢出<br><br>#### UI 优化<br><br>- 打开 GPU 绘制选项,查看界面重叠绘制情况,尽可能减少红色区域<br>- 自定义 View 的 onDraw 方法尽量避免新的局部变量<br>- 减少布局层次,使用 marge 和 include 对布局进行复用<br><br>#### APK 安装包优化<br>一个安装包主要有<code>classes.dex</code> <code>resources.arsc</code> <code>assets</code> <code>lib</code> <code>res 目录</code><br>首先要解决<code>classes.dex</code>的大小是开启混淆,评估引用 libary 的大小<br><code>assets</code>主要是存放的数据库文件,网页一些,将不用的进行删除<br><code>lib</code> 上线时将 x86架构的进行排除在外<br><code>res</code> 对图片进行压缩,使用 xml 复用一些图片<br><br><br><br></details>
+        
+          <p class="article-more-link">
+            <a href="/2019/08/22/Android-Interview-Question/#more">......</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -167,7 +141,7 @@
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/">Flutter</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
