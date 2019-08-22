@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android AOP 切面编程 | 技术边界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AOP是Aspect Oriented Programming的缩写，即『面向切面编程』。它和我们平时接触到的OOP都是编程的不同思想，OOP，即『面向对象编程』，它提倡的是将功能模块化，对象化，而AOP的思想，则不太一样，它提倡的是针对同一类问题的统一处理，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android AOP 切面编程">
+<meta property="og:url" content="http://caimuhao.com/2019/08/22/Android-AOP-Programme/index.html">
+<meta property="og:site_name" content="技术边界">
+<meta property="og:description" content="AOP是Aspect Oriented Programming的缩写，即『面向切面编程』。它和我们平时接触到的OOP都是编程的不同思想，OOP，即『面向对象编程』，它提倡的是将功能模块化，对象化，而AOP的思想，则不太一样，它提倡的是针对同一类问题的统一处理，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/z2GDc3NdZxQTybr.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/UPLjEbA43sh16oV.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/Tbky2cwjZltMasP.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/9sNa783Pu5Hwh1K.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/Cig8UaY9EMJZpFk.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/TEUwqiasDI3nxJe.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/ZIeaLy8qDSrYHb1.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/dPqeLJNIjBaZET5.jpg">
+<meta property="og:updated_time" content="2019-08-22T10:05:20.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android AOP 切面编程">
+<meta name="twitter:description" content="AOP是Aspect Oriented Programming的缩写，即『面向切面编程』。它和我们平时接触到的OOP都是编程的不同思想，OOP，即『面向对象编程』，它提倡的是将功能模块化，对象化，而AOP的思想，则不太一样，它提倡的是针对同一类问题的统一处理，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/22/z2GDc3NdZxQTybr.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/scrollUp/image.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div class="logo">
+        <img src="/logo.png" alt="Profile Picture">
+      </div>
+      <div id="title">技术边界</div>
+      
+       <ul class="my-socials">
+  
+ 
+</ul>
+    </div>
+  </div>
+  <div id="header-inner" class="">
+    <nav id="main-nav">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <!--
+        
+          
+            <a class="main-nav-link" href="/">首页</a>
+          
+            <a class="main-nav-link" href="/archives">归档</a>
+          
+            <a class="main-nav-link" href="/about">关于</a>
+          
+        
+      -->
+    </nav>
+    <nav id="title-nav" style="display:none">
+      <a href="/">技术边界</a>
+      <img src="/logo.png" alt="Smile">
+      <!--
+      <span id="title-nav-socials">
+        
+       
+     </span>
+      -->
+    </nav>
+    <nav id="sub-nav">
+      
+      <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+    </nav>
+    <div id="search-form-wrap">
+      <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+        <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+        <input type="submit" value="" class="search-form-submit">
+        <input name=tn type=hidden value="bds">
+        <input name=cl type=hidden value="3">
+        <input name=ct type=hidden value="2097152">
+        <input type="hidden" name="si" value="caimuhao.com">
+      </form>
+    </div>
+  </div>
+  <div class="site-nav" style="display: none;">
+    <ul>
+      
+      
+        <li><a href="/">首页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+      
+    </ul>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Android-AOP-Programme" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/22/Android-AOP-Programme/" class="article-date">
+  <time datetime="2019-08-22T10:05:00.000Z" itemprop="datePublished">2019-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android AOP 切面编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+           
+            <div id="toc" class="toc">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#APT"><span class="toc-text">APT</span></a></li></ol>
+</div>
+
+         
+        <p>AOP是Aspect Oriented Programming的缩写，即『面向切面编程』。它和我们平时接触到的OOP都是编程的不同思想，OOP，即『面向对象编程』，它提倡的是将功能模块化，对象化，而AOP的思想，则不太一样，它提倡的是针对同一类问题的统一处理，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+<a id="more"></a>
+<h3 id="APT"><a href="#APT" class="headerlink" title="APT"></a>APT</h3><p>在编译时,根据注解生成.java 文件.注解类型是 SOURCE<br>常用框架:DataBinding,ButterKnife,EventBus3,ARouter<br>使用场景:</p>
+<ul>
+<li>封装 Retrofit生成ApiFactory替换掉所有的Repository<ul>
+<li><img src="https://i.loli.net/2019/08/22/z2GDc3NdZxQTybr.jpg" alt=""></li>
+<li><img src="https://i.loli.net/2019/08/22/UPLjEbA43sh16oV.jpg" alt=""></li>
+<li><img src="https://i.loli.net/2019/08/22/Tbky2cwjZltMasP.jpg" alt=""></li>
+</ul>
+</li>
+<li>生成实例化工厂类,自动生成 new 实例来替换反射的 newInstance 代码<ul>
+<li><img src="https://i.loli.net/2019/08/22/9sNa783Pu5Hwh1K.jpg" alt=""></li>
+<li><img src="https://i.loli.net/2019/08/22/Cig8UaY9EMJZpFk.jpg" alt=""></li>
+<li><img src="https://i.loli.net/2019/08/22/TEUwqiasDI3nxJe.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+<p>###AspectJ<br>支持编译期和加载时代码注入</p>
+<p><strong>Advice（通知）</strong>: 典型的 Advice 类型有 before、after 和 around，分别表示在目标方法执行之前、执行后和完全替代目标方法执行的代码。<br><strong>Joint point（连接点）</strong>: 程序中可能作为代码注入目标的特定的点和入口。<br><strong>Pointcut（切入点）</strong>: 告诉代码注入工具，在何处注入一段特定代码的表达式。<br><strong>Aspect（切面）</strong>: Pointcut 和 Advice 的组合看做切面。例如，在本例中通过定义一个 pointcut 和给定恰当的advice，添加一个了内存缓存的切面。<br><strong>Weaving（织入）</strong>: 注入代码（advices）到目标位置（joint points）的过程。<br><img src="https://i.loli.net/2019/08/22/ZIeaLy8qDSrYHb1.jpg" alt=""></p>
+<p>常用框架:Hugo(Jake Wharton)<br>使用场景:</p>
+<ul>
+<li>检测是否登录,没有登录跳转登录,有登录执行方法</li>
+<li>打印方法耗时</li>
+<li>缓存(文件,sp)</li>
+<li>将方法异步操作</li>
+<li>try-catch安全机制篇,自动 try-catch<ul>
+<li><img src="https://i.loli.net/2019/08/22/dPqeLJNIjBaZET5.jpg" alt=""></li>
+</ul>
+</li>
+<li>重试机制,自动失败重新调用方法</li>
+<li>过滤频繁点击</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://caimuhao.com/2019/08/22/Android-AOP-Programme/" data-id="cjzmisy530000eg446loriu8y" class="article-share-link">Share</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/22/Android-Interview-Question/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android 知识点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Software Engineer. Blogging about tech and life.<br>
+      <!-- Theme <a href="https://github.com/henryhuang/oishi" target="_blank">Oishi</a>, Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -->
+      &copy; 2019 muhao
+      
+      <div style="display:none"><script src="https://s22.cnzz.com/z_stat.php?id=1268152880&web_id=1268152880" language="JavaScript"></script></div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <!--
+      <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    -->
+    
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/jquery.transform.js"></script>
+<script src="/js/menu.js"></script>
+
+<script src="/js/script.js"></script>
+<script src="/js/scrollUp.js"></script>
+
+  </div>
+</body>
+</html>
