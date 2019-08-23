@@ -17,7 +17,8 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/22/OE4HbiFhJnwZrMC.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/08/22/b4KQw9RlmFyg6Ze.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/08/23/VnJg5YZQXsr7STG.jpg">
-<meta property="og:updated_time" content="2019-08-23T03:32:36.463Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/22/NIOs43FXC8ETKYi.jpg">
+<meta property="og:updated_time" content="2019-08-23T03:34:00.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 知识点">
 <meta name="twitter:description" content="持续更新…">
@@ -223,8 +224,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static synchronized void test();</span><br></pre></td></tr></table></figure>
 <h3 id="源码原理"><a href="#源码原理" class="headerlink" title="源码原理"></a>源码原理</h3><h4 id="Retrofit-原理"><a href="#Retrofit-原理" class="headerlink" title="Retrofit 原理"></a>Retrofit 原理</h4><p>Retrofit主要是在create方法中采用动态代理模式实现接口方法，这个过程构建了一个ServiceMethod对象，根据方法注解获取请求方式，参数类型和参数注解拼接请求的链接，当一切都准备好之后会把数据添加到Retrofit的RequestBuilder中。然后当我们主动发起网络请求的时候会调用okhttp发起网络请求，okhttp的配置包括请求方式，URL等在Retrofit的RequestBuilder的build()方法中实现，并发起真正的网络请求。</p>
 <h4 id="EventBus-原理"><a href="#EventBus-原理" class="headerlink" title="EventBus 原理"></a>EventBus 原理</h4><p>EventBus 采用事件驱动,一个事件是由于另一个事件的出发而被调用.<br>EventBus 中最重要的变量为 <code>Map&lt;Class&lt;?&gt;, CopyOnWriteArrayList&lt;Subscription&gt;&gt; subscriptionsByEventTy</code>,key 为事件类型,value 为对该事件类型的所有订阅方法.<br><img src="https://i.loli.net/2019/08/22/b4KQw9RlmFyg6Ze.jpg" alt=""></p>
-<h4 id="OkHttp-原理"><a href="#OkHttp-原理" class="headerlink" title="OkHttp 原理"></a>OkHttp 原理</h4><h4 id="ARouter-原理"><a href="#ARouter-原理" class="headerlink" title="ARouter 原理"></a>ARouter 原理</h4><h4 id="LeakCanary"><a href="#LeakCanary" class="headerlink" title="LeakCanary"></a>LeakCanary</h4><h4 id="BlockCanary"><a href="#BlockCanary" class="headerlink" title="BlockCanary"></a>BlockCanary</h4><h3 id="注解处理器"><a href="#注解处理器" class="headerlink" title="注解处理器"></a>注解处理器</h3><p>在程序编译期间,根据注解生成 Java 代码.</p>
-<h3 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h3><h3 id="Android-Studio-编译过程"><a href="#Android-Studio-编译过程" class="headerlink" title="Android Studio 编译过程"></a>Android Studio 编译过程</h3><p><img src="https://i.loli.net/2019/08/23/VnJg5YZQXsr7STG.jpg" alt=""></p>
+<h4 id="OkHttp-原理"><a href="#OkHttp-原理" class="headerlink" title="OkHttp 原理"></a>OkHttp 原理</h4><h4 id="ARouter-原理"><a href="#ARouter-原理" class="headerlink" title="ARouter 原理"></a>ARouter 原理</h4><h4 id="LeakCanary"><a href="#LeakCanary" class="headerlink" title="LeakCanary"></a>LeakCanary</h4><p><img src="https://i.loli.net/2019/08/23/VnJg5YZQXsr7STG.jpg" alt=""></p>
+<h4 id="BlockCanary"><a href="#BlockCanary" class="headerlink" title="BlockCanary"></a>BlockCanary</h4><h3 id="注解处理器"><a href="#注解处理器" class="headerlink" title="注解处理器"></a>注解处理器</h3><p>在程序编译期间,根据注解生成 Java 代码.</p>
+<h3 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h3><h3 id="Android-Studio-编译过程"><a href="#Android-Studio-编译过程" class="headerlink" title="Android Studio 编译过程"></a>Android Studio 编译过程</h3><p><img src="https://i.loli.net/2019/08/22/NIOs43FXC8ETKYi.jpg" alt=""></p>
 <h3 id="RecycleView-优化"><a href="#RecycleView-优化" class="headerlink" title="RecycleView 优化"></a>RecycleView 优化</h3><ul>
 <li>使用<code>DiffUtil</code>局部刷新</li>
 <li><code>recyclerView.setHasFixedSize(true)</code> 当 <code>item</code> 高度固定,设置这个选项可以提高性能.</li>
