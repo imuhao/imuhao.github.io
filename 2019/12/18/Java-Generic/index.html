@@ -5,18 +5,18 @@
   
   <title>Java 中的泛型 | 技术边界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么我们需要泛型? 当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理. 将一些 java.lang.ClassCastException 类型转换异常在代码编译期暴露出来.  泛型类的定义引入一个变量 T(其他任意字母都可以),并用&amp;lt;&amp;gt;括起来,放到类的后面,123public class GenericType&amp;lt;T&amp;gt; &amp;#123;    p">
+  <meta name="description" content="泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 中的泛型">
 <meta property="og:url" content="http://caimuhao.com/2019/12/18/Java-Generic/index.html">
 <meta property="og:site_name" content="技术边界">
-<meta property="og:description" content="为什么我们需要泛型? 当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理. 将一些 java.lang.ClassCastException 类型转换异常在代码编译期暴露出来.  泛型类的定义引入一个变量 T(其他任意字母都可以),并用&amp;lt;&amp;gt;括起来,放到类的后面,123public class GenericType&amp;lt;T&amp;gt; &amp;#123;    p">
+<meta property="og:description" content="泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-18T09:01:14.721Z">
+<meta property="og:updated_time" content="2019-12-18T09:13:08.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 中的泛型">
-<meta name="twitter:description" content="为什么我们需要泛型? 当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理. 将一些 java.lang.ClassCastException 类型转换异常在代码编译期暴露出来.  泛型类的定义引入一个变量 T(其他任意字母都可以),并用&amp;lt;&amp;gt;括起来,放到类的后面,123public class GenericType&amp;lt;T&amp;gt; &amp;#123;    p">
+<meta name="twitter:description" content="泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -134,7 +134,7 @@
 </div>
 
          
-        <a id="more"></a>
+        <p>泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。<br>泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。<br><a id="more"></a></p>
 <h3 id="为什么我们需要泛型"><a href="#为什么我们需要泛型" class="headerlink" title="为什么我们需要泛型?"></a>为什么我们需要泛型?</h3><ol>
 <li>当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理.</li>
 <li>将一些 <code>java.lang.ClassCastException</code> 类型转换异常在代码编译期暴露出来.</li>
