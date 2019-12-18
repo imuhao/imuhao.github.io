@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>技术边界</title>
+  <title>Java 中的泛型 | 技术边界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Life, Android, Code">
-<meta property="og:type" content="website">
-<meta property="og:title" content="技术边界">
-<meta property="og:url" content="http://caimuhao.com/index.html">
+  <meta name="description" content="为什么我们需要泛型? 当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理. 将一些 java.lang.ClassCastException 类型转换异常在代码编译期暴露出来.  泛型类的定义引入一个变量 T(其他任意字母都可以),并用&amp;lt;&amp;gt;括起来,放到类的后面,123public class GenericType&amp;lt;T&amp;gt; &amp;#123;    p">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 中的泛型">
+<meta property="og:url" content="http://caimuhao.com/2019/12/18/Java-Generic/index.html">
 <meta property="og:site_name" content="技术边界">
-<meta property="og:description" content="Life, Android, Code">
+<meta property="og:description" content="为什么我们需要泛型? 当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理. 将一些 java.lang.ClassCastException 类型转换异常在代码编译期暴露出来.  泛型类的定义引入一个变量 T(其他任意字母都可以),并用&amp;lt;&amp;gt;括起来,放到类的后面,123public class GenericType&amp;lt;T&amp;gt; &amp;#123;    p">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-18T09:01:14.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术边界">
-<meta name="twitter:description" content="Life, Android, Code">
+<meta name="twitter:title" content="Java 中的泛型">
+<meta name="twitter:description" content="为什么我们需要泛型? 当一组方法因为参数的多种数据类型不同,而执行相同的代码时,使用泛型进行统一处理. 将一些 java.lang.ClassCastException 类型转换异常在代码编译期暴露出来.  泛型类的定义引入一个变量 T(其他任意字母都可以),并用&amp;lt;&amp;gt;括起来,放到类的后面,123public class GenericType&amp;lt;T&amp;gt; &amp;#123;    p">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -104,11 +106,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-
-    
-    <article id="post-Java-Generic" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java-Generic" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/18/Java-Generic/" class="article-date">
   <time datetime="2019-12-18T09:00:00.000Z" itemprop="datePublished">2019-12-18</time>
@@ -121,8 +119,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/18/Java-Generic/">Java 中的泛型</a>
+    <h1 class="article-title" itemprop="name">
+      Java 中的泛型
     </h1>
   
 
@@ -191,458 +189,21 @@
     </footer>
   </div>
   
-</article>
-
-
     
+<nav id="article-nav">
   
-
-    
-    <article id="post-Android-AOP-Programme" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/22/Android-AOP-Programme/" class="article-date">
-  <time datetime="2019-08-22T10:05:00.000Z" itemprop="datePublished">2019-08-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/Android-AOP-Programme/">Android AOP 切面编程</a>
-    </h1>
+    <a href="/2019/08/22/Android-AOP-Programme/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android AOP 切面编程</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>AOP是Aspect Oriented Programming的缩写，即『面向切面编程』。它和我们平时接触到的OOP都是编程的不同思想，OOP，即『面向对象编程』，它提倡的是将功能模块化，对象化，而AOP的思想，则不太一样，它提倡的是针对同一类问题的统一处理，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2019/08/22/Android-AOP-Programme/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2019/08/22/Android-AOP-Programme/" data-id="cjznrfn2y0002qg44m9w98vbk" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 
-    
-  
-
-    
-    <article id="post-Android-Interview-Question" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/22/Android-Interview-Question/" class="article-date">
-  <time datetime="2019-08-22T09:22:00.000Z" itemprop="datePublished">2019-08-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/Android-Interview-Question/">Android 知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>持续更新…</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2019/08/22/Android-Interview-Question/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2019/08/22/Android-Interview-Question/" data-id="cjznrfn2u0000qg44oj6voijg" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/">hide</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-Flutter-MVP-Architecture" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/29/Flutter-MVP-Architecture/" class="article-date">
-  <time datetime="2018-08-29T08:45:00.000Z" itemprop="datePublished">2018-08-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/Flutter-MVP-Architecture/">在 Flutter 中使用 MVP 架构.</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在 Android 开发中有很多设计模式,从 MVC 到 MVP MVVM 等,而在 Flutter 中也可是使用 MVP 模式进行开发,在这篇文章中我们来看一下在 Flutter 中如何使用 MVP 模式开发应用.<br>
-
-        
-          <p class="article-more-link">
-            <a href="/2018/08/29/Flutter-MVP-Architecture/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2018/08/29/Flutter-MVP-Architecture/" data-id="cjznrfn340005qg44n7tj162p" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/">Flutter</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-How-Kotlin-implements-extension-function" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/14/How-Kotlin-implements-extension-function/" class="article-date">
-  <time datetime="2017-11-14T07:05:00.000Z" itemprop="datePublished">2017-11-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/14/How-Kotlin-implements-extension-function/">Kotlin 扩展函数实现原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>作为一个 Kotlin 用户,你可能非常熟悉这样的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun EditText.string():String&#123;</span><br><span class="line">  return this.getText()?.toString()?:&quot;&quot;// this 实际上是 EditText 对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        
-          <p class="article-more-link">
-            <a href="/2017/11/14/How-Kotlin-implements-extension-function/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2017/11/14/How-Kotlin-implements-extension-function/" data-id="cjznrfn370008qg44idu15y7o" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-Learn-Kotlin-While-Developing-An-Android-App-Part9" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/09/Learn-Kotlin-While-Developing-An-Android-App-Part9/" class="article-date">
-  <time datetime="2017-11-09T07:16:00.000Z" itemprop="datePublished">2017-11-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/09/Learn-Kotlin-While-Developing-An-Android-App-Part9/">Kotlin — Part 9:单元测试与 Kotlin(Mockito,RxJava)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>让我们谈谈在 Kotlin 中使用单元测试,我没有提及为什么我们需要创建单元测试,我们都知道测试在开发中是非常重要的部分,所以今天我们添加一些单元测试到我们的 App 中,这集中在我们的 NewsManager 类,负责请求,映射 Reddit 新闻数据,主要是网络连接问题.</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2017/11/09/Learn-Kotlin-While-Developing-An-Android-App-Part9/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2017/11/09/Learn-Kotlin-While-Developing-An-Android-App-Part9/" data-id="cjznrfn3s000uqg44hrck7ddq" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-Learn-Kotlin-While-Developing-An-Android-App-Part8" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/08/Learn-Kotlin-While-Developing-An-Android-App-Part8/" class="article-date">
-  <time datetime="2017-11-08T03:23:00.000Z" itemprop="datePublished">2017-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/08/Learn-Kotlin-While-Developing-An-Android-App-Part8/">Kotlin — Part 8:方向改变(序列化&amp;数据类)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在这个章节我们将回顾如何处理我们设备的方向改变问题,事实,我们将查看如何处理运行改变,在方向改变时,不浪费已经加载的数据.同时,我们将查看一些 Kotlin 的技巧,使我们的代码更加简洁,干净,可阅读.</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2017/11/08/Learn-Kotlin-While-Developing-An-Android-App-Part8/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2017/11/08/Learn-Kotlin-While-Developing-An-Android-App-Part8/" data-id="cjznrfn3r000rqg44ecn1hzos" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-Learn-Kotlin-While-Developing-An-Android-App-Part7" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part7/" class="article-date">
-  <time datetime="2017-11-07T07:19:00.000Z" itemprop="datePublished">2017-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part7/">Kotlin — Part 7:无限滑动:高阶函数&amp;Lambdas</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>感谢之前的所有文章我们有一个简单的 Reddit 客户端,显示从 Reddit 获取的 Top 新闻.现在我们需要用户不只看到前10个新闻.我们将为这个 App 添加无限滑动加载更多数据.<br>
-
-        
-          <p class="article-more-link">
-            <a href="/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part7/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part7/" data-id="cjznrfn3n000lqg4422trvmzh" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-Learn-Kotlin-While-Developing-An-Android-App-Part6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part6/" class="article-date">
-  <time datetime="2017-11-07T03:50:00.000Z" itemprop="datePublished">2017-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part6/">Kotlin — Part 6:API-Retrofit&amp;Kotlin</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在我们制作一个真正的 API 调用,证明我们的抽象 RxJava真实有效.之后在 App 中来显示一些真实的数据.</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part6/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2017/11/07/Learn-Kotlin-While-Developing-An-Android-App-Part6/" data-id="cjznrfn3o000nqg44sd848cei" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-Learn-Kotlin-While-Developing-An-Android-App-Part5" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/06/Learn-Kotlin-While-Developing-An-Android-App-Part5/" class="article-date">
-  <time datetime="2017-11-06T09:11:00.000Z" itemprop="datePublished">2017-11-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/06/Learn-Kotlin-While-Developing-An-Android-App-Part5/">Kotlin — Part 5:Kotlin,RxJava&amp;RxAndroid</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在这章我们将讨论 Kotlin 中的 RxJava.这是一个不可思议的组合,我们将利用它们使我们的 App 到达另一个层次,解耦我们的 UI 线程与后台线程,在这种情况下从服务端请求 Reddit 新闻.<br>
-
-        
-          <p class="article-more-link">
-            <a href="/2017/11/06/Learn-Kotlin-While-Developing-An-Android-App-Part5/#more">......</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://caimuhao.com/2017/11/06/Learn-Kotlin-While-Developing-An-Android-App-Part5/" data-id="cjznrfn3q000pqg44ne6khu6d" class="article-share-link">Share</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-    </nav>
-  
 </section>
         
       </div>
