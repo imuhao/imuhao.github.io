@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java 中的动态代理 | 技术边界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 Java 中代理模式一般分为两种,静态代理和动态代理.代理模式指给某一个对象提供一个代理对象,并由代理对象控制对原对象的引用.">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 中的动态代理">
+<meta property="og:url" content="http://caimuhao.com/2019/12/19/Java-Dynamic-Proxy/index.html">
+<meta property="og:site_name" content="技术边界">
+<meta property="og:description" content="在 Java 中代理模式一般分为两种,静态代理和动态代理.代理模式指给某一个对象提供一个代理对象,并由代理对象控制对原对象的引用.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-19T08:30:49.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 中的动态代理">
+<meta name="twitter:description" content="在 Java 中代理模式一般分为两种,静态代理和动态代理.代理模式指给某一个对象提供一个代理对象,并由代理对象控制对原对象的引用.">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/scrollUp/image.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div class="logo">
+        <img src="/logo.png" alt="Profile Picture">
+      </div>
+      <div id="title">技术边界</div>
+      
+       <ul class="my-socials">
+  
+ 
+</ul>
+    </div>
+  </div>
+  <div id="header-inner" class="">
+    <nav id="main-nav">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <!--
+        
+          
+            <a class="main-nav-link" href="/">首页</a>
+          
+            <a class="main-nav-link" href="/archives">归档</a>
+          
+            <a class="main-nav-link" href="/about">关于</a>
+          
+            <a class="main-nav-link" href="/tags">Tags</a>
+          
+        
+      -->
+    </nav>
+    <nav id="title-nav" style="display:none">
+      <a href="/">技术边界</a>
+      <img src="/logo.png" alt="Smile">
+      <!--
+      <span id="title-nav-socials">
+        
+       
+     </span>
+      -->
+    </nav>
+    <nav id="sub-nav">
+      
+      <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+    </nav>
+    <div id="search-form-wrap">
+      <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+        <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+        <input type="submit" value="" class="search-form-submit">
+        <input name=tn type=hidden value="bds">
+        <input name=cl type=hidden value="3">
+        <input name=ct type=hidden value="2097152">
+        <input type="hidden" name="si" value="caimuhao.com">
+      </form>
+    </div>
+  </div>
+  <div class="site-nav" style="display: none;">
+    <ul>
+      
+      
+        <li><a href="/">首页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+        <li><a href="/tags">Tags</a></li>
+      
+      
+    </ul>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Java-Dynamic-Proxy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/19/Java-Dynamic-Proxy/" class="article-date">
+  <time datetime="2019-12-19T08:30:00.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 中的动态代理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+           
+            <div id="toc" class="toc">
+    
+</div>
+
+         
+        <p>在 Java 中代理模式一般分为两种,静态代理和动态代理.<br>代理模式指给某一个对象提供一个代理对象,并由代理对象控制对原对象的引用.<br><a id="more"></a><br>代理模式一般会有三个角色:<br><strong>抽象角色</strong>:指代理角色和 真实角色对外提供的公共方法,一般为一个接口<br><strong>真实角色</strong>:需要实现抽象角色接口,定义了真实角色所要实现的 业务逻辑,以便代理角色调用.也就是真正的业务逻辑.<br><strong>代理角色</strong>:需要实现抽象角色,是真实角色的代理,通过真实角色的业务逻辑方法来实现抽象方法,并可以附加自己的操作.将统一的流程都控制到代理角色中处理.<br>而访问者不再访问真实角色，而是去访问代理角色。</p>
+<p>###静态代理<br>  静态代理在使用时,需要定义接口或者父类,被代理对象与代理对象一起实现相同的接口或者是继承相同父类。一般来说，被代理对象和代理对象是一对一的关系，当然一个代理对象对应多个被代理对象也是可以的。<br>  静态代理，一对一则会出现时静态代理对象量多、代码量大，从而导致代码复杂，可维护性差的问题，一对多则代理对象会出现扩展能力差的问题。</p>
+<p>###动态代理<br>指在使用时再创建代理类的实例</p>
+<p><strong>优点</strong><br>只需要一个动态代理类,就可以解决创建多个静态代理类的问题,避免重复多余的代码<br><strong>缺点</strong><br>相比于静态代理,效率低.动态代理需要先通过 Java 反射机制,创建 Proxy 类来间接调用目标方法.<br>应用场景局限, 因为 Java 的单继承特征(每个代理类都继承了 Proxy 类),即只能针对接口创建代理类,不能针对类创建代理类.</p>
+<p>在动态机制中,有两个重要的类和接口,一个是 InvocationHandler 接口,一个 Proxy 类,这两个是实现动态代理必须用到的.</p>
+<p>InvocationHandler接口是给动态代理类实现的，负责处理被代理对象的操作的，而Proxy是用来创建动态代理类实例对象的，因为只有得到了这个对象我们才能调用那些需要代理的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public class DynamicProxy implements InvocationHandler &#123;</span><br><span class="line"></span><br><span class="line">    //持有的真实对象</span><br><span class="line">    private Object factory;</span><br><span class="line"></span><br><span class="line">    public Object getFactory() &#123;</span><br><span class="line">        return factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setFactory(Object factory) &#123;</span><br><span class="line">        this.factory = factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //获取到代理类实例</span><br><span class="line">    public Object getProxyInstance() &#123;</span><br><span class="line">        return Proxy.newProxyInstance(factory.getClass().getClassLoader()</span><br><span class="line">                , factory.getClass().getInterfaces(), this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //当方法被调用时,会调用 InvocationHandler 的 invoke 方法</span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">        doSthAfter();</span><br><span class="line">        Object result = method.invoke(factory, args);</span><br><span class="line">        doSthBefore();</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void doSthAfter() &#123;</span><br><span class="line">        System.out.println(&quot;调用之前进行操作&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void doSthBefore() &#123;</span><br><span class="line">        System.out.println(&quot;调用之后进行操作&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>抽象代理接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class AbstractPart&#123;</span><br><span class="line">    void methodA()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>真正实现业务逻辑的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class RealPart implements AbstractPart &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA() &#123;</span><br><span class="line">        System.out.println(&quot;真实实现!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用动态代理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DynamicProxy dynamicProxy = new DynamicProxy();</span><br><span class="line">dynamicProxy.setFactory(new RealPart());</span><br><span class="line">AbstractPart proxyInstance = (AbstractPart) dynamicProxy.getProxyInstance();</span><br><span class="line">proxyInstance.methodA();</span><br></pre></td></tr></table></figure></p>
+<p>###动态代理实现原理<br>当我们创建一个动态代理时,最重要的一行代码是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Proxy.newProxyInstance(factory.getClass().getClassLoader()</span><br><span class="line">                , factory.getClass().getInterfaces(), this);</span><br></pre></td></tr></table></figure></p>
+<p>在newProxyInstance方法中,会先获取到动态创建的代理对象,然后获取构造器,创建实例对象.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; cl = getProxyClass0(loader, intfs);</span><br><span class="line">final Constructor&lt;?&gt; cons = cl.getConstructor(constructorParams);</span><br><span class="line">return cons.newInstance(new Object[]&#123;h&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在这个方法内部使用了<code>proxyClassCache.get</code>方法来获取代理类,通过这个方法我们可以知道 JDK 内部使用了某种缓存机制缓存了我们的代理类 class 对象,get 方法接受的参数是被代理类的类加载器和类实现的接口.</p>
+<p>在 JDK 内部,会生成一个派生自 Proxy 的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">public final class $Proxy0 extends Proxy implements ICook &#123;</span><br><span class="line">    private static Method m1;</span><br><span class="line">    private static Method m2;</span><br><span class="line">    private static Method m3;</span><br><span class="line">    private static Method m0;</span><br><span class="line"></span><br><span class="line">    public $Proxy0(InvocationHandler var1) throws  &#123;</span><br><span class="line">        super(var1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final boolean equals(Object var1) throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return ((Boolean)super.h.invoke(this, m1, new Object[]&#123;var1&#125;)).booleanValue();</span><br><span class="line">        &#125; catch (RuntimeException | Error var3) &#123;</span><br><span class="line">            throw var3;</span><br><span class="line">        &#125; catch (Throwable var4) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var4);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final String toString() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (String)super.h.invoke(this, m2, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   public final void methodA() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            super.h.invoke(this, m3, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final int hashCode() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return ((Integer)super.h.invoke(this, m0, (Object[])null)).intValue();</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            m1 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;equals&quot;, new Class[]&#123;Class.forName(&quot;java.lang.Object&quot;)&#125;);</span><br><span class="line">            m2 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;toString&quot;, new Class[0]);</span><br><span class="line">            m3 = Class.forName(&quot;com.caimuhao.examples.javaadvance.proxy.dynamic&quot;).getMethod(&quot;methodA&quot;, new Class[0]);</span><br><span class="line">            m0 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;hashCode&quot;, new Class[0]);</span><br><span class="line">        &#125; catch (NoSuchMethodException var2) &#123;</span><br><span class="line">            throw new NoSuchMethodError(var2.getMessage());</span><br><span class="line">        &#125; catch (ClassNotFoundException var3) &#123;</span><br><span class="line">            throw new NoClassDefFoundError(var3.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在这个类中,有我们代理对象的所有方法,当我们调用创建动态代理返回的对象的方法时,其实调用的是 <code>h.invoke</code> 方法,这个 h 对象就是我们在调用 <code>Proxy.newProxyInstance</code>实例时,传入的 this 参数,也就是动态代理 中的 <code>invoke</code> 方法.这样我们就可以代理到其它类,在其它类方法执行前后加入一些我们自己的业务逻辑.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://caimuhao.com/2019/12/19/Java-Dynamic-Proxy/" data-id="ck4cgtpay0000xg4ieyqwjo0j" class="article-share-link">Share</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/18/Java-Generic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java 中的泛型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Software Engineer. Blogging about tech and life.<br>
+      <!-- Theme <a href="https://github.com/henryhuang/oishi" target="_blank">Oishi</a>, Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -->
+      &copy; 2019 caimuhao
+      
+      <div style="display:none"><script src="https://s22.cnzz.com/z_stat.php?id=1268152880&web_id=1268152880" language="JavaScript"></script></div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <!--
+      <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav>
+    -->
+    
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/jquery.transform.js"></script>
+<script src="/js/menu.js"></script>
+
+<script src="/js/script.js"></script>
+<script src="/js/scrollUp.js"></script>
+
+  </div>
+</body>
+</html>
